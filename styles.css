@@ -1,33 +1,30 @@
 /*
-  Mi hoja de vida web · styles.css (un solo archivo para todo el sitio)
-  Requisitos de HTML: R1 (viewport), R8-R10 (menú y enlaces) y R11 (HTML válido)
-  se cumplen en los archivos .html; aquí se comentan R2-R7 y el soporte de R8.
-  Estrategia Mobile First: el CSS base es para celular y las @media van al final.
+  Mi hoja de vida web - todo el css va aqui
+  Empece por el celular (mobile first) y las @media estan al final.
+  Los R1, R8-R11 estan en los html, aqui van los demas.
+  Solo negro y rojo, nada mas :)
 */
 
-/* ---------- Variables (colores y medidas) ---------- */
+/* mis colores */
 :root {
-  --fondo: #0b0b0d;
-  --panel: #15151a;
-  --tarjeta: #1c1c21;
-  --borde: #2e2e36;
-  --texto: #f2f2f4;
-  --suave: #b8b8c2;
-  --acento: #e11d2e;
-  --acento-claro: #ff5a67;
-  --ok: #4ade80;
-  --aviso: #fbbf24;
+  --fondo: #0a0a0a;
+  --tarjeta: #141414;
+  --linea: #262626;
+  --texto: #f5f5f5;
+  --suave: #a3a3a3;
+  --rojo: #e11d2e;
+  --rojo-oscuro: #b3141f;
   --radio: 0.75rem;
 }
 
-/* ---------- Base ---------- */
+/* lo basico */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* R6: unidades relativas (rem, %, vw) */
+/* R6: uso rem, % y vw en vez de px fijos */
 html {
   font-size: 100%;
 }
@@ -39,22 +36,22 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.6;
 
-  /* R6: ancho máximo y contenido centrado */
+  /* R6: que no se estire demasiado y quede centrado */
   max-width: 72rem;
   margin-inline: auto;
   padding: 1rem;
   min-height: 100vh;
 
-  /* R2 + R4: Mobile First, grid por áreas (celular: una columna) */
+  /* R2 + R4: logo y menu arriba en la misma fila, lo demas debajo */
   display: grid;
-  gap: 1rem;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto auto 1fr auto;
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "cabecera"
-    "menu"
-    "principal"
-    "pie";
+    "cabecera menu"
+    "principal principal"
+    "pie pie";
 }
 
 .cabecera {
@@ -73,8 +70,9 @@ body {
   grid-area: pie;
 }
 
-/* R7: las imágenes nunca se desbordan */
-img {
+/* R7: que las imagenes no se salgan */
+img,
+svg {
   max-width: 100%;
   height: auto;
   display: block;
@@ -87,9 +85,9 @@ h3 {
   margin: 0 0 0.5rem;
 }
 
-/* R6: tamaño de título con vw (limitado con clamp) */
+/* R6: el titulo crece con la pantalla (vw + clamp) */
 h1 {
-  font-size: clamp(1.9rem, 8vw, 3rem);
+  font-size: clamp(2rem, 8vw, 3.25rem);
 }
 
 h2 {
@@ -97,7 +95,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 p {
@@ -105,180 +103,224 @@ p {
 }
 
 a {
-  color: var(--acento-claro);
+  color: var(--rojo);
 }
 
 a:focus-visible {
-  outline: 3px solid var(--acento-claro);
+  outline: 2px solid var(--rojo);
   outline-offset: 3px;
   border-radius: 0.25rem;
 }
 
 .acento {
-  color: var(--acento-claro);
+  color: var(--rojo);
 }
 
 .suave {
   color: var(--suave);
 }
 
-/* ---------- Cabecera, menú y pie ---------- */
-.cabecera,
-.menu,
-.pie {
-  background: var(--panel);
-  border: 1px solid var(--borde);
-  border-radius: var(--radio);
-  padding: 1rem;
+/* rayita roja antes del titulo (como en el mockup) */
+.titulo-linea {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
+.titulo-linea::before {
+  content: "";
+  width: 1.75rem;
+  height: 3px;
+  background: var(--rojo);
+}
+
+/* rayita roja encima del titulo (contacto) */
+.titulo-raya::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-bottom: 1rem;
+  background: var(--rojo);
+}
+
+/* iconos de linea en rojo */
+.icono {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--rojo);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* cabecera y menu */
 .cabecera {
-  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  display: inline-block;
   color: var(--texto);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
 }
 
 .logo span {
-  color: var(--acento-claro);
+  color: var(--rojo);
 }
 
-.cabecera p {
-  margin: 0;
-  color: var(--suave);
-  font-size: 0.95rem;
+/* R8: el menu (es igualito en las 3 paginas) */
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-/* R8: menú de navegación (el mismo HTML en las tres páginas) */
 .menu ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: flex-end;
+  gap: 0.25rem;
 }
 
 .menu a {
   display: block;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 0.5rem;
   min-height: 2.75rem;
   color: var(--texto);
+  font-size: 0.9rem;
   text-decoration: none;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
 }
 
 .menu a:hover {
-  background: var(--tarjeta);
-  border-radius: 0.5rem 0.5rem 0 0;
+  color: var(--rojo);
 }
 
+/* la pagina donde estoy queda subrayada en rojo */
 .menu a[aria-current="page"] {
-  border-bottom-color: var(--acento);
-  font-weight: 700;
+  border-bottom-color: var(--rojo);
 }
 
+/* pie con lineas rojas a los lados */
 .pie {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   color: var(--suave);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.pie::before,
+.pie::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rojo);
 }
 
 .pie p {
-  margin: 0.25rem 0;
+  margin: 0;
 }
 
-/* ---------- Bloques de contenido ---------- */
+/* secciones: sin cajas, solo separadas con una linea */
 .bloque {
-  background: var(--panel);
-  border: 1px solid var(--borde);
-  border-radius: var(--radio);
-  padding: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
 }
 
-.bloque > h2 {
-  padding-left: 0.75rem;
-  border-left: 4px solid var(--acento);
-}
-
-/* Botones */
+/* botones */
 .botones {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .boton {
   display: inline-block;
   padding: 0.7rem 1.25rem;
   min-height: 2.75rem;
-  background: var(--acento);
+  background: var(--rojo);
   color: #fff;
-  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
   text-decoration: none;
-  border: 2px solid var(--acento);
+  border: 1px solid var(--rojo);
   border-radius: 0.5rem;
 }
 
 .boton:hover {
-  background: #b9141f;
-  border-color: #b9141f;
+  background: var(--rojo-oscuro);
+  border-color: var(--rojo-oscuro);
 }
 
 .boton-borde {
   background: transparent;
   color: var(--texto);
-  border-color: var(--suave);
 }
 
 .boton-borde:hover {
   background: var(--tarjeta);
-  border-color: var(--texto);
 }
 
-/* ---------- Hoja de vida (index.html) ---------- */
-/* R4: grid-template-areas del contenido de la hoja de vida (celular: 1 columna) */
+/* hoja de vida (index) */
+/* R4: areas del cv, en el cel una sola columna */
 .cv {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "hero"
-    "perfil"
+    "sobre"
+    "resumen"
     "formacion"
     "habilidades"
-    "competencias"
-    "proyectos";
+    "competencias";
 }
 
+/* R4: dentro del hero, en el cel el texto va arriba y el portatil abajo */
 .hero {
   grid-area: hero;
   display: grid;
   gap: 1rem;
-  justify-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, #2a0a0e 0%, var(--panel) 60%);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "texto"
+    "arte";
+  align-items: center;
 }
 
-.hero img {
-  /* R6 + R7: tamaño relativo y sin desbordar */
-  width: 40vw;
-  max-width: 9rem;
+.hero-texto {
+  grid-area: texto;
 }
 
-.hero .botones {
-  justify-content: center;
+.hero-rol {
+  font-size: 1.15rem;
 }
 
-.perfil {
-  grid-area: perfil;
+/* R6 + R7: el dibujo se encoge con la pantalla */
+.hero-arte {
+  grid-area: arte;
+  width: 100%;
+  max-width: 28rem;
+  justify-self: center;
+}
+
+.sobre-mi {
+  grid-area: sobre;
+}
+
+.resumen {
+  grid-area: resumen;
 }
 
 .formacion {
@@ -293,128 +335,157 @@ a:focus-visible {
   grid-area: competencias;
 }
 
-.proyectos-resumen {
-  grid-area: proyectos;
+/* listas con icono a la izquierda (resumen y contacto) */
+.lista-iconos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
 }
 
-.linea-tiempo {
+.lista-iconos li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lista-iconos strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.lista-iconos span {
+  display: block;
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+/* los estudios: tarjetitas con icono, fecha en rojo y linea roja arriba */
+.estudios {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 }
 
-.linea-tiempo li {
-  padding-left: 0.75rem;
-  border-left: 2px solid var(--borde);
+.estudio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem;
+  border-top: 3px solid var(--rojo);
 }
 
-.linea-tiempo strong {
-  display: block;
+.estudio .icono {
+  margin-bottom: 0.5rem;
 }
 
-.linea-tiempo span {
-  display: block;
+.estudio .fecha {
+  color: var(--rojo);
+  font-size: 0.85rem;
+}
+
+.estudio .lugar {
   color: var(--suave);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
-/* ---------- Tarjetas (R5) ---------- */
-/* R5: tarjetas automáticas con repeat(auto-fit, minmax()) */
+.estudio p {
+  margin: 0.5rem 0 0;
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+/* R5: tarjetas que se acomodan solas con repeat(auto-fit, minmax()) */
 .tarjetas {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
 }
 
 .tarjetas-grandes {
+  gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 }
 
 .tarjeta {
   background: var(--tarjeta);
-  border: 1px solid var(--borde);
   border-radius: var(--radio);
   padding: 1rem;
 }
 
+/* las chiquitas (habilidades y competencias) */
 .tarjetas:not(.tarjetas-grandes) .tarjeta {
+  padding: 0.6rem 0.75rem;
   text-align: center;
-  font-weight: 600;
+  font-size: 0.95rem;
 }
 
+/* proyecto: en el cel el icono va a la izquierda del texto */
 .tarjeta-proyecto {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem;
 }
 
+.tarjeta-proyecto .icono {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.tarjeta-proyecto h2,
 .tarjeta-proyecto h3 {
-  margin: 0;
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
 }
 
 .tarjeta-proyecto p {
-  margin: 0;
+  color: var(--suave);
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
 }
 
 .tarjeta-proyecto .tecnologias {
-  color: var(--suave);
-  font-size: 0.9rem;
-}
-
-.tarjeta-pendiente {
-  border-style: dashed;
-  color: var(--suave);
-}
-
-.estado {
-  align-self: flex-start;
-  padding: 0.15rem 0.6rem;
-  border: 1px solid currentColor;
-  border-radius: 99px;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.estado-realizado {
-  color: var(--ok);
-}
-
-.estado-desarrollo {
-  color: var(--aviso);
-}
-
-.estado-proximo {
-  color: var(--suave);
-}
-
-.pendiente {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border: 1px dashed var(--suave);
-  border-radius: 0.4rem;
-  color: var(--suave);
+  color: var(--texto);
   font-size: 0.85rem;
 }
 
-/* ---------- Páginas interiores ---------- */
+/* etiqueta de estado: gris normal, roja si esta en desarrollo */
+.estado {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--suave);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.estado-desarrollo {
+  color: var(--rojo);
+}
+
+/* paginas de adentro */
 .titulo-pagina {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .titulo-pagina p {
   color: var(--suave);
-  max-width: 40rem;
+  max-width: 30rem;
 }
 
-/* Contacto (celular: una columna) */
+/* contacto, en el cel una columna y sin el sobre grande */
 .contacto {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "intro"
@@ -429,111 +500,106 @@ a:focus-visible {
   grid-area: medios;
 }
 
-.medios {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.75rem;
+.contacto-arte {
+  grid-area: arte;
+  display: none;
 }
 
-.medios li {
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: var(--radio);
-  padding: 1rem;
+.medios a {
+  font-size: 0.85rem;
 }
 
-.medios strong {
-  display: block;
-}
+/* ======================================
+   MEDIA QUERIES (R2, R3) - van al final
+   ====================================== */
 
-/* ============================================================
-   MEDIA QUERIES (R2, R3): siempre al final, de menor a mayor
-   ============================================================ */
-
-/* R3: breakpoint 1 · desde 600 px (tablet) */
+/* R3: de 600px pa arriba (tablet) */
 @media (min-width: 600px) {
   body {
-    padding: 1.5rem;
-    gap: 1.25rem;
+    padding: 1.5rem 2rem;
+    row-gap: 2.5rem;
   }
 
-  .cabecera,
-  .menu,
-  .pie {
-    padding: 1.25rem 1.5rem;
+  .menu ul {
+    gap: 1.5rem;
   }
 
-  /* R4: la hoja de vida pasa a dos columnas */
+  .botones {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* R4: el cv pasa a 2 columnas */
   .cv {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "hero hero"
-      "perfil formacion"
-      "habilidades competencias"
-      "proyectos proyectos";
+      "sobre resumen"
+      "formacion formacion"
+      "habilidades competencias";
   }
 
-  /* El avatar se coloca al lado del texto */
+  /* R4: texto a la izquierda y portatil a la derecha */
   .hero {
-    grid-template-columns: auto 1fr;
-    justify-items: start;
-    align-items: center;
-    text-align: left;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-areas: "texto arte";
   }
 
-  .hero .botones {
-    justify-content: flex-start;
+  /* linea vertical entre "sobre mi" y el resumen */
+  .resumen {
+    padding-left: 2rem;
+    border-left: 1px solid var(--linea);
   }
 
-  .menu a {
-    padding: 0.6rem 1.5rem;
+  /* proyecto: ahora el icono va arriba */
+  .tarjeta-proyecto {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tarjeta-proyecto .icono {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .titulo-pagina {
+    text-align: center;
+  }
+
+  .titulo-pagina p {
+    margin-inline: auto;
   }
 }
 
-/* R3: breakpoint 2 · desde 1024 px (computador) */
+/* R3: de 1024px pa arriba (compu) */
 @media (min-width: 1024px) {
-  /* R4: cabecera y menú en una fila; el menú pasa a la derecha */
   body {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      "cabecera menu"
-      "principal principal"
-      "pie pie";
+    padding: 2rem 3rem;
   }
 
-  .cabecera {
-    text-align: left;
-  }
-
-  .menu {
-    align-self: stretch;
-    display: flex;
-    align-items: center;
-  }
-
-  /* R4: la hoja de vida cambia a columnas 2fr / 1fr */
+  /* R4: ahora el cv va 2fr / 1fr y la formacion ocupa todo el ancho */
   .cv {
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     grid-template-areas:
       "hero hero"
-      "perfil habilidades"
-      "formacion competencias"
-      "proyectos proyectos";
-    gap: 1.25rem;
+      "sobre resumen"
+      "formacion formacion"
+      "habilidades competencias";
+    gap: 2.5rem;
   }
 
-  .bloque {
-    padding: 1.75rem;
-  }
-
-  /* Contacto: introducción y medios lado a lado */
+  /* contacto: texto a la izquierda y el sobre grande a la derecha */
   .contacto {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas: "intro medios";
-    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "intro arte"
+      "medios arte";
+    align-items: center;
+  }
+
+  .contacto-arte {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+    justify-self: center;
   }
 }

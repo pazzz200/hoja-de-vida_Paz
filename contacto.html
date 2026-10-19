@@ -9,8 +9,7 @@
 </head>
 <body>
   <header class="cabecera">
-    <a class="logo" href="index.html">Juan David <span>Paz</span> Santos</a>
-    <p>Desarrollador Junior en formación</p>
+    <a class="logo" href="index.html">Paz<span>.</span></a>
   </header>
 
   <nav class="menu" aria-label="Navegación principal">
@@ -23,34 +22,42 @@
 
   <main class="principal">
     <div class="contacto">
-      <section class="bloque contacto-intro" aria-labelledby="titulo-contacto">
-        <h1 id="titulo-contacto">Contáctame</h1>
-        <p>¿Tienes alguna pregunta, una oportunidad o quieres conocer más sobre mi trabajo? Será un gusto conectar contigo.</p>
-        <p class="suave">Esta página no tiene formulario: el medio más directo es el correo profesional.</p>
-        <div class="botones">
-          <a class="boton boton-borde" href="proyectos.html">Ver mis proyectos</a>
-        </div>
+      <section class="contacto-intro" aria-labelledby="titulo-contacto">
+        <h1 id="titulo-contacto" class="titulo-raya">Contá<span class="acento">ctame</span></h1>
+        <p>¿Tienes alguna pregunta o quieres conocer más sobre mi trabajo?</p>
+        <p class="suave">Será un gusto conectar contigo.</p>
       </section>
 
-      <section class="bloque contacto-medios" aria-labelledby="titulo-medios">
-        <h2 id="titulo-medios">Medios de contacto</h2>
-        <ul class="medios">
+      <section class="contacto-medios" aria-label="Medios de contacto">
+        <ul class="lista-iconos medios">
           <li>
-            <strong>Correo profesional</strong>
-            <a href="mailto:loladas2005@gmail.com">loladas2005@gmail.com</a>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div>
+              <strong>Correo profesional</strong>
+              <a href="mailto:loladas2005@gmail.com">loladas2005@gmail.com</a>
+            </div>
           </li>
           <li>
-            <strong>GitHub</strong>
-            <a href="https://github.com/pazzz200" target="_blank" rel="noopener noreferrer">Explora mis repositorios</a>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            <div>
+              <strong>GitHub</strong>
+              <a href="https://github.com/pazzz200" target="_blank" rel="noopener noreferrer">Explora mis proyectos</a>
+            </div>
           </li>
         </ul>
       </section>
+
+      <!-- sobre grande, solo decorativo (se ve en compu) -->
+      <svg class="contacto-arte" viewBox="0 0 300 240" aria-hidden="true" focusable="false">
+        <polygon points="60,40 240,10 290,170 110,230" fill="#141414"/>
+        <rect x="70" y="60" width="170" height="120" rx="10" transform="rotate(-12 155 120)" fill="none" stroke="#e11d2e" stroke-width="7"/>
+        <path d="M75 80l78 55 85-72" transform="rotate(-12 155 120)" fill="none" stroke="#e11d2e" stroke-width="7" stroke-linejoin="round"/>
+      </svg>
     </div>
   </main>
 
   <footer class="pie">
     <p>Gracias por visitar mi hoja de vida web</p>
-    <p><a href="https://github.com/pazzz200" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </body>
 </html>

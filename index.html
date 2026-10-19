@@ -9,8 +9,7 @@
 </head>
 <body>
   <header class="cabecera">
-    <a class="logo" href="index.html">Juan David <span>Paz</span> Santos</a>
-    <p>Desarrollador Junior en formación</p>
+    <a class="logo" href="index.html">Paz<span>.</span></a>
   </header>
 
   <nav class="menu" aria-label="Navegación principal">
@@ -23,48 +22,94 @@
 
   <main class="principal">
     <div class="cv">
-      <section class="bloque hero" aria-labelledby="titulo-hero">
-        <img src="img/avatar.svg" width="200" height="200" alt="Avatar ilustrado de Juan David Paz Santos">
-        <div>
+      <section class="hero" aria-labelledby="titulo-hero">
+        <div class="hero-texto">
           <p class="acento">Hola, soy</p>
-          <h1 id="titulo-hero">Juan David Paz Santos</h1>
-          <p>Desarrollador Junior en formación. Me gusta aprender, trabajar en equipo y crear soluciones con código.</p>
+          <h1 id="titulo-hero">Juan David <span class="acento">Paz</span> Santos</h1>
+          <p class="hero-rol">Desarrollador en formación</p>
+          <p class="suave">Apasionado por la programación, la tecnología y el aprendizaje constante.</p>
           <div class="botones">
-            <a class="boton" href="proyectos.html">Ver mis proyectos</a>
+            <a class="boton" href="proyectos.html">Ver mis proyectos →</a>
             <a class="boton boton-borde" href="contacto.html">Contáctame</a>
           </div>
         </div>
+
+        <!-- dibujo del portatil, solo decorativo -->
+        <svg class="hero-arte" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="rojo" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e11d2e" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#e11d2e" stop-opacity="0"/>
+            </linearGradient>
+            <radialGradient id="brillo">
+              <stop offset="0" stop-color="#e11d2e" stop-opacity="0.45"/>
+              <stop offset="1" stop-color="#e11d2e" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <polygon points="250,10 400,0 400,190 310,230" fill="url(#rojo)"/>
+          <ellipse cx="200" cy="240" rx="190" ry="40" fill="url(#brillo)"/>
+          <rect x="90" y="60" width="220" height="145" rx="8" fill="#111" stroke="#e11d2e" stroke-width="2"/>
+          <rect x="102" y="72" width="196" height="121" fill="#050505"/>
+          <rect x="118" y="90" width="70" height="6" rx="3" fill="#e11d2e"/>
+          <rect x="118" y="106" width="120" height="6" rx="3" fill="#3a3a3a"/>
+          <rect x="132" y="122" width="90" height="6" rx="3" fill="#3a3a3a"/>
+          <rect x="132" y="138" width="110" height="6" rx="3" fill="#e11d2e" fill-opacity="0.6"/>
+          <rect x="118" y="154" width="60" height="6" rx="3" fill="#3a3a3a"/>
+          <path d="M60 212h280l-22 22H82z" fill="#1a1a1a" stroke="#333"/>
+        </svg>
       </section>
 
-      <section class="bloque perfil" aria-labelledby="titulo-perfil">
-        <h2 id="titulo-perfil">Perfil</h2>
+      <section class="bloque sobre-mi" aria-labelledby="titulo-perfil">
+        <h2 id="titulo-perfil" class="titulo-linea">Sobre mí</h2>
         <p>Soy una persona perseverante y con facilidad para trabajar en equipo. Cuento con formación en el SENA y actualmente estudio en Campuslands, fortaleciendo mis conocimientos en programación y desarrollo de software, especialmente en Python, Git y GitHub.</p>
-        <p>Me interesa seguir aprendiendo, adquirir experiencia y crecer profesionalmente.</p>
+        <p class="suave">Me interesa seguir aprendiendo, adquirir experiencia y crecer profesionalmente.</p>
       </section>
+
+      <aside class="bloque resumen" aria-label="Resumen">
+        <ul class="lista-iconos">
+          <li>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+            <div><strong>Formación</strong><span>Campuslands · SENA</span></div>
+          </li>
+          <li>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg>
+            <div><strong>Habilidades</strong><span>Python, JavaScript, Git</span></div>
+          </li>
+          <li>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+            <div><strong>Idiomas</strong><span>Inglés A2.3</span></div>
+          </li>
+        </ul>
+      </aside>
 
       <section class="bloque formacion" aria-labelledby="titulo-formacion">
-        <h2 id="titulo-formacion">Formación</h2>
-        <ul class="linea-tiempo">
-          <li>
+        <h2 id="titulo-formacion" class="titulo-linea">Formación</h2>
+        <ul class="estudios">
+          <li class="tarjeta estudio">
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg>
+            <span class="fecha">Ene – Abr 2025</span>
             <strong>Técnico Laboral en Desarrollo de Software</strong>
-            <span>Campuslands, Floridablanca</span>
-            <span>Ene – Abr 2025</span>
+            <span class="lugar">Campuslands, Floridablanca</span>
+            <p>Python, Git, GitHub y trabajo en equipo con Scrum.</p>
           </li>
-          <li>
+          <li class="tarjeta estudio">
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+            <span class="fecha">Feb – Nov 2024</span>
             <strong>Técnico en Programación de Software</strong>
-            <span>SENA</span>
-            <span>Feb – Nov 2024</span>
+            <span class="lugar">SENA</span>
+            <p>HTML, CSS, JavaScript, PHP y bases de datos con MySQL.</p>
           </li>
-          <li>
+          <li class="tarjeta estudio">
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>
+            <span class="fecha">2023</span>
             <strong>Bachiller</strong>
-            <span>Mayor San Francisco de Asís, Cali</span>
-            <span>2023</span>
+            <span class="lugar">Mayor San Francisco de Asís, Cali</span>
           </li>
         </ul>
       </section>
 
       <section class="bloque habilidades" aria-labelledby="titulo-habilidades">
-        <h2 id="titulo-habilidades">Habilidades técnicas</h2>
+        <h2 id="titulo-habilidades" class="titulo-linea">Habilidades técnicas</h2>
         <ul class="tarjetas">
           <li class="tarjeta">Python</li>
           <li class="tarjeta">JavaScript</li>
@@ -76,7 +121,7 @@
       </section>
 
       <section class="bloque competencias" aria-labelledby="titulo-competencias">
-        <h2 id="titulo-competencias">Competencias</h2>
+        <h2 id="titulo-competencias" class="titulo-linea">Competencias</h2>
         <ul class="tarjetas">
           <li class="tarjeta">Liderazgo</li>
           <li class="tarjeta">Creatividad</li>
@@ -87,35 +132,12 @@
           <li class="tarjeta">Comunicación</li>
           <li class="tarjeta">Adaptabilidad</li>
         </ul>
-        <p class="suave">Idiomas: inglés, nivel A2.3.</p>
-      </section>
-
-      <section class="bloque proyectos-resumen" aria-labelledby="titulo-experiencia">
-        <h2 id="titulo-experiencia">Experiencia destacada</h2>
-        <ul class="tarjetas tarjetas-grandes">
-          <li class="tarjeta tarjeta-proyecto">
-            <h3>BiblioStock</h3>
-            <p>Aplicación CLI en equipo (4 personas) para gestionar el inventario y los préstamos de una biblioteca. Campuslands.</p>
-          </li>
-          <li class="tarjeta tarjeta-proyecto">
-            <h3>Sistema para gimnasio ForceTech</h3>
-            <p>Aplicación de consola en equipo (Scrum, sprint de 5 días) para gestionar clientes, instructores y matrículas. Campuslands.</p>
-          </li>
-          <li class="tarjeta tarjeta-proyecto">
-            <h3>Página web Óptica</h3>
-            <p>Página web con base de datos incluida, hecha con HTML, CSS, JavaScript y PHP. SENA.</p>
-          </li>
-        </ul>
-        <div class="botones">
-          <a class="boton" href="proyectos.html">Ver todos los proyectos</a>
-        </div>
       </section>
     </div>
   </main>
 
   <footer class="pie">
     <p>Gracias por visitar mi hoja de vida web</p>
-    <p><a href="https://github.com/pazzz200" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </body>
 </html>
